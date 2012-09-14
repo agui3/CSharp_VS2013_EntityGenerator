@@ -16,8 +16,9 @@ a { color:#333; text-decoration:none; }
 a:hover { color:#666; text-decoration:underline; }
 .p20{padding:20px;}
 .mt10{margin-top:10px;}
-.mainbox,.sidebox{float:left;dispaly:inline;width:50%;}
-
+.mainbox,.sidebox{float:left;dispaly:inline; }
+.sidebox{width:40%;}
+.mainbox{width:50%;}
 .inputbox{}
 .inputbox li{padding:10px 0;}
 .inputbox label{display:inline-block;width:80px;text-align:right;}
