@@ -11,246 +11,17 @@ using System.Globalization;
 
 namespace EntityGenerator
 {
-    public class MappingInfo
-    {
-        public int Level { get; set; }
-        public string EntityName { get; set; }
-        public string JsonFromField { get; set; }
-        public string JsonToField { get; set; }
-        public string JsonToType { get; set; }
-    }
-
     public class JsonClassGenerator
     {
         public string JsonString { get; set; }
-        //public string TargetFolder { get; set; }
         public string Namespace { get; set; }
         public string MainClass { get; set; }
         public string MobileAPI { get; set; }
+        public MobileSystemEnum System { get; set; }
 
         public List<MappingInfo> MappingList { get; set; }
 
         private PluralizationService pluralizationService = PluralizationService.CreateService(new CultureInfo("en-us"));
-
-        public void GenerateJavaClasses()
-        {
-            //var list = MappingList.GroupBy(x => x.EntityName);
-            //foreach (var g in list)
-            //{
-            //    string path = Path.Combine(TargetFolder, g.Key + ".java");
-            //    using (var sw = new StreamWriter(path, false, Encoding.UTF8))
-            //    {
-            //        sw.WriteLine("// JSON Java Class Generator");
-            //        sw.WriteLine("// Written by Bruce Bao");
-            //        sw.WriteLine("// Used for API: {0}", MobileAPI);
-            //        sw.WriteLine("package {0}", Namespace);
-            //        sw.WriteLine();
-            //        sw.WriteLine("import java.util.List;");
-            //        sw.WriteLine();
-
-
-            //        sw.WriteLine("public class {0} {1}", g.Key, "{");
-
-            //        //for ctor
-            //        //WriteStringConstructor(sw, className, prefix);
-
-            //        foreach (var field in g)
-            //        {
-            //            sw.WriteLine("	private {0} {1};", field.JsonToType, field.JsonFromField);
-            //        }
-
-            //        foreach (var field in g)
-            //        {
-            //            sw.WriteLine();
-            //            sw.WriteLine("	public {0} get{1}() {2}", field.JsonToType, field.JsonToField, "{");
-            //            sw.WriteLine("		return {0};", field.JsonFromField);
-            //            sw.WriteLine("	}");
-
-            //            sw.WriteLine();
-            //            sw.WriteLine("	public void set{0}({1} {2}) {3}", field.JsonToField, field.JsonToType, field.JsonFromField, "{");
-            //            sw.WriteLine("		this.{0} = {0};", field.JsonFromField);
-            //            sw.WriteLine("	}");
-            //        }
-
-            //        sw.WriteLine("}");
-            //    }
-            //}
-        }
-
-        public void GenerateOCClasses()
-        {
-            //var list = MappingList.GroupBy(x => x.EntityName);
-            //foreach (var g in list)
-            //{
-            //    string path = Path.Combine(TargetFolder, g.Key + ".h");
-            //    using (var sw = new StreamWriter(path, false, Encoding.UTF8))
-            //    {
-            //        sw.WriteLine("// JSON iOS Class Generator");
-            //        sw.WriteLine("// Written by Bruce Bao");
-            //        sw.WriteLine("// Used for API: {0}", MobileAPI);
-            //        sw.WriteLine();
-
-            //        sw.WriteLine("#import <Foundation/Foundation.h>");
-            //        sw.WriteLine();
-            //        sw.WriteLine("@class " + Namespace + ";");
-
-            //        foreach (var field in g)
-            //        {
-            //            if (field.JsonToType != "NSNumber" && field.JsonToType != "NSString" && !field.JsonToType.Contains("NSArray"))
-            //            {
-            //                sw.WriteLine("@class {0}", field.JsonToType);
-            //            }
-            //        }
-                    
-            //        sw.WriteLine();
-            //        sw.WriteLine("@interface {0} : NSObject", g.Key);
-            //        sw.WriteLine("{");
-
-            //        foreach (var field in g)
-            //        {
-            //            if (field.JsonToType.Contains("NSArray<"))
-            //            {
-            //                sw.WriteLine("    {0} *{1}; //// JSON: {2}", "NSArray", field.JsonToField, field.JsonFromField);
-            //            }
-            //            else
-            //            {
-            //                sw.WriteLine("    {0} *{1}; //// JSON: {2}", field.JsonToType, field.JsonToField, field.JsonFromField);
-            //            }
-            //        }
-
-            //        sw.WriteLine("}");
-
-            //        foreach (var field in g)
-            //        {
-            //            if (field.JsonToType.Contains("NSArray<"))
-            //            {
-            //                sw.WriteLine("@property (nonatomic,retain) {0} *{1};", "NSArray", field.JsonToField);
-            //            }
-            //            else
-            //            {
-            //                sw.WriteLine("@property (nonatomic,retain) {0} *{1};", field.JsonToType, field.JsonToField);
-            //            }
-            //        }
-
-            //        sw.WriteLine();
-            //        sw.WriteLine("- (" + Namespace +" *)objectMapping;");
-            //        sw.WriteLine();
-            //        sw.WriteLine("@end");
-            //    }
-
-
-            //    string path2 = Path.Combine(TargetFolder, g.Key + ".m");
-            //    using (var sw = new StreamWriter(path2, false, Encoding.UTF8))
-            //    {
-            //        sw.WriteLine("// JSON iOS Class Generator");
-            //        sw.WriteLine("// Written by Bruce Bao");
-            //        sw.WriteLine();
-
-            //        sw.WriteLine("#import \"{0}.h\"", g.Key);
-            //        sw.WriteLine("#import <MTFramework/MTFramework.h>");
-
-            //        foreach (var field in g)
-            //        {
-            //            if (field.JsonToType.Contains("NSArray"))
-            //            {
-            //                if (!field.JsonToType.Contains("NSNumber")
-            //                && !field.JsonToType.Contains("NSString"))
-            //                {
-            //                    var type = field.JsonToType.Replace("NSArray<", "").Replace(">", "");
-            //                    sw.WriteLine("#import \"{0}.h\"", type);
-            //                }
-            //            }
-            //            else if (field.JsonToType != "NSNumber" && field.JsonToType != "NSString")
-            //            {
-            //                sw.WriteLine("#import \"{0}.h\"", field.JsonToType);
-            //            }
-            //        }
-
-            //        sw.WriteLine();
-            //        sw.WriteLine("@implementation {0}", g.Key);
-
-            //        sw.WriteLine();
-            //        foreach (var field in g)
-            //        {
-            //            sw.WriteLine("@synthesize {0};", field.JsonToField);
-            //        }
-            //        sw.WriteLine();
-
-            //        sw.WriteLine("- (" + Namespace + " *)objectMapping {");
-            //        sw.WriteLine("    " + Namespace + " *mapping = [" + Namespace + " mappingForClass:[" + g.Key + " class]];");
-
-            //        foreach (var field in g)
-            //        {
-            //            if (field.JsonToType.Contains("NSArray<"))
-            //            {
-            //                var type  = field.JsonToType.Replace("NSArray<", "").Replace(">", "");
-            //                sw.WriteLine("    [mapping mapKeyPath:@\"" + field.JsonFromField + "\" toAttribute:@\"" + field.JsonToField + "\" withMapping:[" + type + " class]];");
-            //            }
-            //            else
-            //            {
-            //                sw.WriteLine("    [mapping mapKeyPath:@\"" + field.JsonFromField + "\" toAttribute:@\"" + field.JsonToField + "\" withClass:[" + field.JsonToType + " class]];");
-            //            }
-            //        }
-            //        sw.WriteLine("    return mapping;");
-            //        sw.WriteLine("}");
-
-            //        sw.WriteLine();
-            //        sw.WriteLine("- (void)dealloc {");
-
-            //        foreach (var field in g)
-            //        {
-            //            sw.WriteLine("    [" + field.JsonToField + " release];");
-            //        }
-
-            //        sw.WriteLine("    [super dealloc];");
-            //        sw.WriteLine("}");
-            //        sw.WriteLine();
-            //        sw.WriteLine("@end");
-            //    }
-            //}
-        }
-
-        public void GenerateCSharpClasses()
-        {
-            var list = MappingList.GroupBy(x => x.EntityName);
-            foreach (var g in list)
-            {
-                string path = Path.Combine(@"c:\json", g.Key + ".cs");
-                using (var sw = new StreamWriter(path, false, Encoding.UTF8))
-                {
-                    sw.WriteLine("// JSON C# Class Generator");
-                    sw.WriteLine("// Written by Bruce Bao");
-                    sw.WriteLine("// Used for API: {0}", MobileAPI);
-                    sw.WriteLine("using System;");
-                    sw.WriteLine("using System.Collections.Generic;");
-                    sw.WriteLine("using System.Reflection;");
-                    sw.WriteLine("using System.Runtime.Serialization;");
-                    sw.WriteLine();
-
-                    sw.WriteLine("namespace {0}", Namespace);
-                    sw.WriteLine("{");
-
-                    sw.WriteLine("    [DataContract]");
-                    sw.WriteLine("    public partial class {0}", g.Key);
-                    sw.WriteLine("    {");
-
-                    var prefix = "        ";
-
-                    //for ctor
-                    //WriteStringConstructor(sw, className, prefix);
-
-                    foreach (var field in g)
-                    {
-                        sw.WriteLine();
-                        sw.WriteLine(prefix + "[DataMember(Name=\"{0}\")]", field.JsonFromField);
-                        sw.WriteLine(prefix + "public {0} {1} {{ get; set; }}", field.JsonToType, field.JsonToField);
-                    }
-
-                    sw.WriteLine("    }");
-                    sw.WriteLine("}");
-                }
-            }
-        }
 
         public void PrepareCSharpGridView()
         {
@@ -354,7 +125,7 @@ namespace EntityGenerator
                     EntityName = className,
                     JsonFromField = field.JsonMemberName,
                     JsonToField = field.DefaultMemberName,
-                    JsonToType = field.Type.GetCSharpType(true),
+                    JsonToType = field.Type.GetCSharpType(System, true),
                 });
             }
         }
@@ -363,7 +134,7 @@ namespace EntityGenerator
 
         private string CreateName(string name)
         {
-            name = ToTitleCase(name);
+            name = StringHelper.ToTitleCase(name);
 
             var finalName = name;
             if (GeneratedNames.Contains(finalName.ToLower()))
@@ -382,39 +153,8 @@ namespace EntityGenerator
 
         private string CreateNameFromPlural(string plural)
         {
-            plural = ToTitleCase(plural);
+            plural = StringHelper.ToTitleCase(plural);
             return CreateName(pluralizationService.Singularize(plural));
-        }
-
-        private void WriteStringConstructor(StreamWriter sw, string className, string prefix)
-        {
-            sw.WriteLine();
-            sw.WriteLine(prefix + "public {0}()", className);
-            sw.WriteLine(prefix + "{");
-            sw.WriteLine(prefix + "}");
-            sw.WriteLine();
-        }
-
-        internal static string ToTitleCase(string str)
-        {
-            var sb = new StringBuilder(str.Length);
-            var flag = true;
-
-            for (int i = 0; i < str.Length; i++)
-            {
-                var c = str[i];
-                if (char.IsLetterOrDigit(c))
-                {
-                    sb.Append(flag ? char.ToUpper(c) : c);
-                    flag = false;
-                }
-                else
-                {
-                    flag = true;
-                }
-            }
-
-            return sb.ToString();
         }
     }
 }

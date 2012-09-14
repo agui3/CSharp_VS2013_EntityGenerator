@@ -46,25 +46,25 @@ namespace EntityGenerator
             return common;
         }
 
-        public string GetCSharpType(bool useLists)
+        public string GetCSharpType(MobileSystemEnum system, bool useLists)
         {
             switch (Type)
             {
                 case JsonTypeEnum.Anything: return "object";
                 case JsonTypeEnum.Array:
-                    if (MobileSystem.System == "iOS")
+                    if (system == MobileSystemEnum.IPhone)
                     {
-                        return "NSArray<" + InternalType.GetCSharpType(useLists) + ">";
+                        return "NSArray<" + InternalType.GetCSharpType(system, useLists) + ">";
                     }
                     else
-                    { 
-                        return "List<" + InternalType.GetCSharpType(useLists) + ">";
+                    {
+                        return "List<" + InternalType.GetCSharpType(system, useLists) + ">";
                     }
 
-                case JsonTypeEnum.Dictionary: return "Dictionary<string, " + InternalType.GetCSharpType(useLists) + ">";
+                case JsonTypeEnum.Dictionary: return "Dictionary<string, " + InternalType.GetCSharpType(system, useLists) + ">";
                 case JsonTypeEnum.Boolean: return "bool";
                 case JsonTypeEnum.Float:
-                    if (MobileSystem.System == "iOS")
+                    if (system == MobileSystemEnum.IPhone)
                     {
                         return "NSNumber";
                     }
@@ -74,7 +74,7 @@ namespace EntityGenerator
                     }
 
                 case JsonTypeEnum.Integer:
-                    if (MobileSystem.System == "iOS")
+                    if (system == MobileSystemEnum.IPhone)
                     {
                         return "NSNumber";
                     }
@@ -94,11 +94,11 @@ namespace EntityGenerator
                 case JsonTypeEnum.NullableSomething: return "object";
                 case JsonTypeEnum.Object: return AssignedName;
                 case JsonTypeEnum.String:
-                    if (MobileSystem.System == "iOS")
+                    if (system == MobileSystemEnum.IPhone)
                     {
                         return "NSString";
                     }
-                    else if (MobileSystem.System == "Android")
+                    else if (system == MobileSystemEnum.Android)
                     {
                         return "String";
                     }
@@ -250,5 +250,14 @@ namespace EntityGenerator
 
             }
         }
+    }
+
+    public class MappingInfo
+    {
+        public int Level { get; set; }
+        public string EntityName { get; set; }
+        public string JsonFromField { get; set; }
+        public string JsonToField { get; set; }
+        public string JsonToType { get; set; }
     }
 }

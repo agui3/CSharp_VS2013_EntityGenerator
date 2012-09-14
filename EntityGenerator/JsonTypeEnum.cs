@@ -27,9 +27,4 @@ namespace EntityGenerator
 
 
     }
-
-    public static class MobileSystem
-    {
-        public static string System;
-    }
 }
