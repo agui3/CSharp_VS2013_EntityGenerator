@@ -46,7 +46,7 @@ namespace EntityGenerator {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVariable;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblVariable;
         
         /// <summary>
         /// txtVariable control.
@@ -55,7 +55,7 @@ namespace EntityGenerator {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtVariable;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtVariable;
         
         /// <summary>
         /// txtMobileAPI control.
@@ -64,16 +64,7 @@ namespace EntityGenerator {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMobileAPI;
-        
-        /// <summary>
-        /// gvMappingList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMappingList;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtMobileAPI;
         
         /// <summary>
         /// txtJsonString control.
@@ -92,6 +83,15 @@ namespace EntityGenerator {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLoadMapping;
+        
+        /// <summary>
+        /// gvMappingList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvMappingList;
         
         /// <summary>
         /// btnGenerate control.

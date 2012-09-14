@@ -71,8 +71,8 @@ namespace EntityGenerator
         {
             gen = new JsonClassGenerator();
             gen.System = (MobileSystemEnum)Enum.Parse(typeof(MobileSystemEnum), ddlMobileSystem.SelectedValue);
-            gen.Namespace = txtVariable.Text.Trim();
-            gen.MobileAPI = txtMobileAPI.Text.Trim();
+            gen.Namespace = txtVariable.Value.Trim();
+            gen.MobileAPI = txtMobileAPI.Value.Trim();
 
             gen.MappingList = new List<MappingInfo>();
             for (int i = 0; i < gvMappingList.Rows.Count; i++)
@@ -86,7 +86,7 @@ namespace EntityGenerator
                 gen.MappingList.Add(
                     new MappingInfo()
                     {
-                        Level = Convert.ToInt16(gvMappingList.Rows[i].Cells[0].Text),
+                        Level = Convert.ToInt16((gvMappingList.Rows[i].Cells[0].FindControl("Level") as Label).Text),
                         EntityName = (gvMappingList.Rows[i].Cells[1].FindControl("EntityName") as TextBox).Text,
                         JsonFromField = (gvMappingList.Rows[i].Cells[1].FindControl("JsonFromField") as TextBox).Text,
                         JsonToField = (gvMappingList.Rows[i].Cells[1].FindControl("JsonToField") as TextBox).Text,
@@ -129,7 +129,7 @@ namespace EntityGenerator
 
         public void GenerateCSharpClass()
         {
-            var list = gen.MappingList.GroupBy(x => x.EntityName);            
+            var list = gen.MappingList.GroupBy(x => x.EntityName);
             foreach (var g in list)
             {
                 WriteLine("// JSON C# Class Generator");
@@ -348,14 +348,16 @@ namespace EntityGenerator
             switch (system)
             {
                 case MobileSystemEnum.IPhone:
-                    lblVariable.Text = "Framework";
-                    txtVariable.Text = "MTObjectMapping";
+                    lblVariable.InnerText = "Framework:";
+                    txtVariable.Value = "MTObjectMapping";
                     break;
                 case MobileSystemEnum.Android:
-                    lblVariable.Text = "Package";
+                    lblVariable.InnerText = "Package:";
+                    txtVariable.Value = "";
                     break;
                 case MobileSystemEnum.WP7:
-                    lblVariable.Text = "Namespace";
+                    lblVariable.InnerText = "Namespace:";
+                    txtVariable.Value = "";
                     break;
                 default:
                     break;

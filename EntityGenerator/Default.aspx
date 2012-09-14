@@ -5,54 +5,49 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title></title>
-    <style type="text/css">
-        .style1
-        {
-            width: 311px;
-        }
-        .style2
-        {
-            width: 203px;
-        }
-    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>实体转换工具</title>
+ 
+    <link href="css/newstyle.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <table style="width:100%;">
-            <tr>
-                <td class="style1">
-                    <table style="width:114%;">
-                        <tr>
-                            <td class="style2">
-                                手机系统：</td>
-                            <td>
-                                <asp:DropDownList ID="ddlMobileSystem" runat="server" Height="16px" Width="146px">
-                                </asp:DropDownList>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="style2">
-                                <asp:Label ID="lblVariable" runat="server" Text="导入"></asp:Label>
-                                ：</td>
-                            <td>
-                                <asp:TextBox ID="txtVariable" runat="server" Width="229px"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="style2">
-                                Mobile API:</td>
-                            <td>
-                                <asp:TextBox ID="txtMobileAPI" runat="server" Width="228px"></asp:TextBox>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td rowspan="2">
+         <div class="fix">
+         <div class="sidebox">
+         <div class="p20">
+    	        <ul class="inputbox">
+        	        <li><label>手机系统:</label>
+                        <asp:DropDownList ID="ddlMobileSystem" runat="server" CssClass="t01" Height="20px" Width="160px"></asp:DropDownList>
+                    </li>
+                    <li>
+                        <label id="lblVariable" runat="server"></label>
+                        <input id="txtVariable" runat="server" type="text" class="t01" />
+                    </li>
+                    <li>
+                        <label>Mobile API:</label>
+                        <input id="txtMobileAPI" runat="server" type="text" class="t01" />
+                    </li>
+                </ul>
+                <p class="mt10">JSON 字符串:</p>
+                <p class="mt10"><asp:TextBox ID="txtJsonString" runat="server" CssClass="texta" TextMode="MultiLine" ></asp:TextBox></p>
+                <p class="mt10">
+                    <asp:Button ID="btnLoadMapping" runat="server" onclick="btnLoadMapping_Click" 
+                        Text="生成映射关系" />
+                </p>
+                </div>
+            </div>
+            <!--sidebox end-->
+ 	        <div class="mainbox">
+    	        <div class="p20">
+
                     <asp:GridView ID="gvMappingList" AutoGenerateColumns="false" runat="server" Height="100%" Width="359px">
                         <Columns>
-                            <asp:BoundField HeaderText="层级" ReadOnly="true" DataField="Level" />
+                            <asp:TemplateField HeaderText="层级">
+                                <ItemTemplate>
+                                    <asp:Label ID="Level" runat="server" Text=<%# Eval("Level")%> Width="25px" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Json实体名">
                                 <ItemTemplate>
                                     <asp:TextBox ID="EntityName" runat="server" Text=<%# Eval("EntityName")%>></asp:TextBox>
@@ -75,27 +70,15 @@
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
-                </td>
-            </tr>
-            <tr>
-                <td class="style1">
-                    Json字符串：<br />
-                    <asp:TextBox ID="txtJsonString" runat="server" Height="286px" 
-                        TextMode="MultiLine" Width="357px"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td class="style1">
-                    <asp:Button ID="btnLoadMapping" runat="server" onclick="btnLoadMapping_Click" 
-                        Text="生成映射关系" />
-                </td>
-                <td align="right">
-                    <asp:Button ID="btnGenerate" runat="server" onclick="btnGenerate_Click" 
-                        Text="生成实体" />
-                </td>
-            </tr>
-        </table>
-    </div>
+
+
+         <p class="mt10">
+             <asp:Button ID="btnGenerate" runat="server" onclick="btnGenerate_Click" Text="生成实体" />
+         </p>
+                </div>
+            </div>
+    
+         </div>
     </form>
 </body>
 </html>
