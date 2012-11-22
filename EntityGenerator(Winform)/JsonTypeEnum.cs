@@ -32,6 +32,11 @@ namespace JsonCSharpClassGenerator
     {
         public static string GetCleanText(string str)
         {
+            if (str.StartsWith(@"["))
+            {
+                str = "{\"d\":" + str + "}";
+            }
+
             char[] ch = str.ToCharArray();
             StringBuilder sb = new StringBuilder();
 

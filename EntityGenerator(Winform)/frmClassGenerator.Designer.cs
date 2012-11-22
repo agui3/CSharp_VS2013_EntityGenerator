@@ -57,6 +57,7 @@
             this.dsXML = new System.Data.DataSet();
             this.btnClear = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboCapitalFirstLetter = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgFieldMappings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsXML)).BeginInit();
@@ -259,7 +260,7 @@
             "iOS"});
             this.cboSystem.Location = new System.Drawing.Point(126, 12);
             this.cboSystem.Name = "cboSystem";
-            this.cboSystem.Size = new System.Drawing.Size(121, 20);
+            this.cboSystem.Size = new System.Drawing.Size(49, 20);
             this.cboSystem.TabIndex = 40;
             this.cboSystem.Text = "iOS";
             // 
@@ -339,6 +340,7 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Controls.Add(this.cboCapitalFirstLetter);
             this.panel1.Controls.Add(this.cboSystem);
             this.panel1.Controls.Add(this.btnClear);
             this.panel1.Controls.Add(this.edtJson);
@@ -357,6 +359,16 @@
             this.panel1.Size = new System.Drawing.Size(309, 425);
             this.panel1.TabIndex = 47;
             // 
+            // cboCapitalFirstLetter
+            // 
+            this.cboCapitalFirstLetter.AutoSize = true;
+            this.cboCapitalFirstLetter.Location = new System.Drawing.Point(215, 14);
+            this.cboCapitalFirstLetter.Name = "cboCapitalFirstLetter";
+            this.cboCapitalFirstLetter.Size = new System.Drawing.Size(84, 16);
+            this.cboCapitalFirstLetter.TabIndex = 47;
+            this.cboCapitalFirstLetter.Text = "首字母大写";
+            this.cboCapitalFirstLetter.UseVisualStyleBackColor = true;
+            // 
             // frmCSharpClassGeneration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -372,7 +384,6 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnGenerate);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmCSharpClassGeneration";
@@ -417,6 +428,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn JsonToField;
         private System.Windows.Forms.DataGridViewTextBoxColumn JsonToType;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox cboCapitalFirstLetter;
     }
 }
 
