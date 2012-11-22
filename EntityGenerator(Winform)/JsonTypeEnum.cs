@@ -38,8 +38,11 @@ namespace JsonCSharpClassGenerator
             for (int i = 0; i < ch.Length; i++)
             {
                 //如果是\"
-                if ((int)ch[i] == 92)
+                if ((int)ch[i] == 92 && ch[i+1] == 34)
+                {
+                    i++;
                     continue;
+                }
 
                 sb.Append(ch[i]);
             }
