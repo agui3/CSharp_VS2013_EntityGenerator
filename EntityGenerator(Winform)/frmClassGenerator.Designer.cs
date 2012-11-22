@@ -254,15 +254,12 @@
             this.cboSystem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.cboSystem.FormattingEnabled = true;
-            this.cboSystem.Items.AddRange(new object[] {
-            "Android",
-            "WP7",
-            "iOS"});
             this.cboSystem.Location = new System.Drawing.Point(126, 12);
             this.cboSystem.Name = "cboSystem";
             this.cboSystem.Size = new System.Drawing.Size(49, 20);
             this.cboSystem.TabIndex = 40;
             this.cboSystem.Text = "iOS";
+            this.cboSystem.SelectedIndexChanged += new System.EventHandler(this.cboSystem_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -388,6 +385,7 @@
             this.MinimizeBox = false;
             this.Name = "frmCSharpClassGeneration";
             this.Text = "JSON Class Generator";
+            this.Load += new System.EventHandler(this.frmCSharpClassGeneration_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgFieldMappings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsXML)).EndInit();

@@ -120,6 +120,7 @@ namespace JsonCSharpClassGenerator
             gen.JsonString = StringHelper.GetCleanText(edtJson.Text.Trim());
             gen.MainClass = @"MainClass";
             gen.MappingList = new List<MappingInfo>();
+            gen.IsCapitalFirstLetter = cboCapitalFirstLetter.Checked;
 
             try
             {
@@ -306,6 +307,30 @@ namespace JsonCSharpClassGenerator
                 ((TextBox)sender).SelectAll();
             }
         }
+
+        private void cboSystem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboSystem.Text == cboItem_iOS)
+            {
+                cboCapitalFirstLetter.Checked = false;
+            }
+            else
+            {
+                cboCapitalFirstLetter.Checked = true;
+            }
+        }
+
+        private void frmCSharpClassGeneration_Load(object sender, EventArgs e)
+        {
+            this.cboSystem.Items.AddRange(new object[] {
+            cboItem_Android,
+            cboItem_WP7,
+            cboItem_iOS});
+        }
+
+        const string cboItem_Android = "Android";
+        const string cboItem_WP7 = "WP7";
+        const string cboItem_iOS = "iOS";
     }
 
     public static class MobileSystem

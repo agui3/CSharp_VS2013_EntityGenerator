@@ -27,6 +27,7 @@ namespace JsonCSharpClassGenerator
         public string Namespace { get; set; }
         public string MainClass { get; set; }
         public string MobileAPI { get; set; }
+        public bool IsCapitalFirstLetter { get; set; }
 
         public List<MappingInfo> MappingList { get; set; }
 
@@ -348,16 +349,33 @@ namespace JsonCSharpClassGenerator
 
             var fieldsList = fields.Select(x => new FieldInfo(x.Key, x.Value)).ToArray();
 
-            foreach (var field in fieldsList)
+            if (IsCapitalFirstLetter)
             {
-                MappingList.Add(new MappingInfo()
+                foreach (var field in fieldsList)
                 {
-                    Level = level,
-                    EntityName = className,
-                    JsonFromField = field.JsonMemberName,
-                    JsonToField = field.DefaultMemberName,
-                    JsonToType = field.Type.GetCSharpType(true),
-                });
+                    MappingList.Add(new MappingInfo()
+                    {
+                        Level = level,
+                        EntityName = className,
+                        JsonFromField = field.JsonMemberName,
+                        JsonToField = field.DefaultMemberName,
+                        JsonToType = field.Type.GetCSharpType(true),
+                    });
+                }
+            }
+            else
+            {
+                foreach (var field in fieldsList)
+                {
+                    MappingList.Add(new MappingInfo()
+                    {
+                        Level = level,
+                        EntityName = className,
+                        JsonFromField = field.JsonMemberName,
+                        JsonToField = field.JsonMemberName,
+                        JsonToType = field.Type.GetCSharpType(true),
+                    });
+                }
             }
         }
 
