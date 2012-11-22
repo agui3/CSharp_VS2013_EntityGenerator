@@ -381,8 +381,6 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnGenerate);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmCSharpClassGeneration";
             this.Text = "JSON Class Generator";
             this.Load += new System.EventHandler(this.frmCSharpClassGeneration_Load);
