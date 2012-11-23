@@ -41,12 +41,6 @@ namespace JsonCSharpClassGenerator
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            if (edtJson.Text == string.Empty)
-            {
-                MessageBox.Show(this, "Please insert some sample JSON.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                edtJson.Focus();
-                return;
-            }
             if (edtTargetFolder.Text == string.Empty)
             {
                 MessageBox.Show(this, "Please specify an output directory.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
